@@ -70,9 +70,11 @@ body {
 }
 
 .top-inner {
+
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 25px;
+    font-weight: bold;
 }
 
 #themeToggle{
@@ -136,6 +138,7 @@ textarea::placeholder{
 
 
 .logo {
+    color: white;
     text-decoration: none;
     font-weight: bolder;
     margin: 0;
