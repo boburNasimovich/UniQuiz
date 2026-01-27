@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="uz">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Bobur Nasimovich — web developer portfolio.
+     UniQuiz — talabalar uchun mo‘ljallangan ta’limiy test (quiz) platformasi.
+     1-kurs talabalariga mo‘ljallangan fanlar bo‘yicha quiz sayt.
+     uniquiz, quiz sayt, test platforma, talabalar uchun quiz, ta’limiy test,
+     HTML, CSS, JavaScript loyihalar, test saytlar va zamonaviy web dizaynlar.">
+    <meta name="keywords"
+        content="Bobur Nasimovich, Bobur, bobur, Nasimovich, nasimovich, Nabiyev, Boburjon, boburjon, web developer, portfolio, HTML, CSS, JavaScript">
+    <meta name="author" content="Bobur Nasimovich">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://UniQuiz.vercel.app" />
+    <title>UniQuiz</title>
+    <meta name="description" content="UniQuiz" />
+    <meta property="og:title" content="quiz sayt" />
+    <meta property="og:description" content="quiz sayt" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow">
+    <meta property="og:url" content="https://UniQuiz.vercel.app" />
+    <title>UniQuiz — Talabalar uchun Quiz</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="app">
+        <header class="top">
+            <div>
+                <a href="/" class="logo">UniQuiz</a>
+                <p class="sub">1 – kurs | fanlar bo‘yicha tezkor quiz</p>
+            </div>
+            <div class="top-inner">
+                <button id="themeToggle" class="btn ghost" title="Dark / Light">
+                </button>
+                <button id="btnAbout" class="btn ghost" title="info">About</button>
+            </div>
+        </header>
+
+        <!-- HOME: kurslar -->
+        <section id="screenHome" class="screen active">
+            <h2>UniQuiz — beta versiya. Sayt ustida ishlar davom etmoqda.</h2>
+            <!-- <h2 class="title">Qaysi kurs?</h2> -->
+            <div class="grid" id="yearGrid"></div>
+            <!-- <p class="hint">Kursni tanlasang — fanlar chiqadi, fan tanlansa — test boshlanadi.</p> -->
+        </section>
+
+        <!-- SUBJECTS: fanlar -->
+        <section id="screenSubjects" class="screen">
+            <div class="row">
+                <h2 class="title" id="subjectsTitle">Fanlar</h2>
+                <!-- <button id="btnBackToYears" class="btn ghost">← Kurslar</button> -->
+            </div>
+            <div class="grid" id="subjectGrid"></div>
+        </section>
+        <!-- QUIZ -->
+        <section id="screenQuiz" class="screen">
+            <div class="quizTop">
+                <div>
+                    <h2 class="title" id="quizTitle">Quiz</h2>
+                    <p class="meta" id="quizMeta">Savol</p>
+                </div>
+                <button id="btnQuit" class="btn ghost">Chiqish</button>
+            </div>
+
+            <div class="card">
+                <div class="qrow">
+                    <span class="badge" id="qIndex">1/10</span>
+                    <div class="bar">
+                        <div class="barIn" id="barIn"></div>
+                    </div>
+                </div>
+
+                <h3 class="question" id="questionText">Savol matni</h3>
+
+                <div class="answers" id="answers"></div>
+
+                <div class="actions">
+                    <button id="btnFinish" class="btn ghost">Tugatish</button>
+
+                    <button id="btnNext" class="btn" disabled>Keyingi →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULT -->
+        <section id="screenResult" class="screen">
+            <div class="card">
+                <h2 class="title">Natija</h2>
+                <p class="score" id="scoreText">0/0</p>
+                <p class="feedback" id="feedbackText">—</p>
+
+                <div class="mini" id="weakTopics"></div>
+
+                <div class="actions">
+                    <button id="btnRetry" class="btn">Qayta boshlash</button>
+                    <button id="btnSubjects" class="btn ghost">Fanlarga qaytish</button>
+                </div>
+            </div>
+        </section>
+        <section id="screenAbout" class="screen">
+            <div class="card">
+                <p class="about-text">
+                    <strong>UniQuiz — beta versiya</strong><br><br>
+                    UniQuiz — talabalar uchun mo‘ljallangan ta’limiy test (quiz) platforma.<br>
+                    Ushbu loyiha bilimlarni tez va samarali tarzda mustahkamlashga yordam berish maqsadida
+                    yaratilgan.<br><br>
+                    Hozirda sayt beta rejimida ishlamoqda.<br>
+                    Ba’zi funksiyalar to‘liq ishlamasligi yoki kelajakda o‘zgartirilishi mumkin.<br><br>
+                    Loyihani sinab ko‘rayotganingiz va qo‘llab-quvvatlayotganingiz uchun rahmat 🙌
+                </p>
+
+                <button id="btnBackFromAbout" class="btn ghost">← Orqaga</button>
+                <div class="card" style="margin-top:16px">
+                    <h3 class="title">Fikr qoldiring</h3>
+                    <input id="feedbackName" placeholder="Ism (ixtiyoriy)" />
+
+                    <div class="stars" id="ratingStars" aria-label="Rating">
+                        <button type="button" class="star" data-v="1">★</button>
+                        <button type="button" class="star" data-v="2">★</button>
+                        <button type="button" class="star" data-v="3">★</button>
+                        <button type="button" class="star" data-v="4">★</button>
+                        <button type="button" class="star" data-v="5">★</button>
+                        <span id="ratingLabel" class="about-text" style="margin-left:10px">0/5</span>
+                    </div>
+
+                    <textarea id="feedbackInput" placeholder="Sayt haqidagi fikringiz yoki taklifingiz..."
+                        rows="4"></textarea>
+
+
+                    <div class="actions">
+                        <button type="button" id="btnSendFeedback" class="btn">Yuborish</button>
+                    </div>
+
+                    <p id="feedbackMsg" class="about-text"></p>
+                    <p id="feedbackCount" class="about-text"></p>
+                    <p id="feedbackLast" class="about-text"></p>
+
+                    <div class="actions">
+                        <button id="btnClearFeedback" type="button" class="btn ghost">Fikrlarni tozalash
+                            (admin)</button>
+                    </div>
+
+                    <p id="feedbackCount" class="about-text"></p>
+
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="foot">
+            <span class="bobur">Created by <a class="bobur-link" target="_blank"
+                    href="https://www.boburnasimovich.uz">boburNasimovich.uz</a></span>
+        </footer>
+    </div>
+
+    <script src="fizika.js"></script>
+    <script src="ingliztili.js"></script>
+    <script src="tarix.js"></script>
+    <script src="dasturlash.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
