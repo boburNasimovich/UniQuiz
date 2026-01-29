@@ -236,8 +236,21 @@ function showResult() {
   const correct = quiz.correct;
   const wrong = answered - correct;
 
-  scoreText.textContent = `Ishlangan: ${answered}/${total}`;
-  feedbackText.textContent = `✅ To‘g‘ri: ${correct}   ❌ Xato: ${wrong}`;
+ scoreText.textContent = `Ishlangan: ${answered}/${total}`;
+feedbackText.textContent = `✅ To‘g‘ri: ${correct}   ❌ Xato: ${wrong}`;
+
+let msg = "";
+if (total >= 25) {
+  if (correct >= 20) msg = "🎉 Imtihonga tayyorsiz!";
+  else msg = "📌 Yana biroz mashq qiling, keyin qayta urinib ko‘ring.";
+} else {
+  // Agar boshqa limit bo‘lsa (masalan 20), percent bo‘yicha ishlasin
+  const percent = total ? Math.round((correct / total) * 100) : 0;
+  msg = percent >= 80 ? "🎉 Juda yaxshi!" : "📌 Yana mashq qiling.";
+}
+
+weakTopics.textContent = msg;
+
 
   weakTopics.textContent = ""; // hozircha
 
